@@ -11,22 +11,22 @@ bad.data是清理数据时被去掉的数据，包含了异常情况和错误值
 这里仅对排班问题进行研究，因此异常数据的分析略过。  
 ## 1. 查看业务量
 ### 1.1 查看每天的呼叫量      
-![日呼叫量](01_call_day_arrival.png)        
+![日呼叫量](https://github.com/oDoraemon/schedule_op/blob/master/img/01_call_day_arrival.png?raw=true)        
 由于周五/周六是以色列的周末，银行不上班，因此呼叫量很少。   
 从平滑曲线可以看出，日均呼叫量约在1200左右，曲线比较稳定。 
 
 ### 1.2 查看呼叫量的月度分布  
 由于存在大小月，单独看月累计总量可能影响分布。 因此同时查看每月日均呼叫量。  
-![月呼叫量分布](02_call_month_arrival.png)  
+![月呼叫量分布](https://github.com/oDoraemon/schedule_op/blob/master/img/02_call_month_arrival.png?raw=true)  
 从图中可以看到，不同的月份业务量有变动。大概可以分为1/4/8/9月份, 2/3/5/6/7月份, 8/11/12月份三个档次，分别对应业务淡季，业务正常，业务高峰的情况。  
 我们取业务正常情况下的5/6/7月份数据作为代表，进行研究。
 
 ### 1.3 查看呼叫量在一天内的分布
-![业务量均值-小时分布(5-7月份)](03_call_hour_arrival.png)  
+![业务量均值-小时分布(5-7月份)](https://github.com/oDoraemon/schedule_op/blob/master/img/03_call_hour_arrival.png?raw=true)  
 
 从图中可以看到，正常上班时间(9:00-18:00)属于忙时。 同时在我们印象中，客户可能会选择在中午休息时间打电话来进行咨询的预设并不成立。 
 检查一下不同工作日是否会影响业务量的分布。
-![工作日业务量均值-小时分布(5-7月份)](04_dow_hour_arrival.png)    
+![工作日业务量均值-小时分布(5-7月份)](https://github.com/oDoraemon/schedule_op/blob/master/img/04_dow_hour_arrival.png?raw=true)    
 工作日的下午高峰时间在分布上有差异, 但差异并不大。 取均值可以有效代表各工作日。
 
 ### 1.4 计算呼叫中心每小时服务量
@@ -86,13 +86,13 @@ bad.data是清理数据时被去掉的数据，包含了异常情况和错误值
 
 假如员工正常工作时长为8小时，结合算法结果，制定我们的排班计划表:
 
-![排班计划表](05_schedule_solution.png)  
+![排班计划表](https://github.com/oDoraemon/schedule_op/blob/master/img/05_schedule_solution.png?raw=true)  
 5个班次加起来总共需要18个客服人员，可以基本满足业务需求。  
 因为就呼叫中心的情况来说，客服不一定需要on site上班，因此可以存在1个班次的人员提前下班并支援晚班高峰。  
 上午10点高峰期压力会比较大，视具体情况再决定是否安排人员。 
 
 理想服务能力VS平均每小时业务量：
-![理想服务能力VS平均每小时业务量](06_service_capability.png)  
+![理想服务能力VS平均每小时业务量](https://github.com/oDoraemon/schedule_op/blob/master/img/06_service_capability.png?raw=true)  
 从图中可以看出，在理想情况下(用户依次顺序接入时)，排班方案的服务能力是足够的。  
 但因为存在高并发的场景，所以会存在用户需要排队等待的情况。
 用户排队的概率是否过高，排队时长是否可接受，则需要进一步的统计数据支撑，根据结果再进行排班的优化。
